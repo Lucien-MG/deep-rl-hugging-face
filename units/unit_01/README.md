@@ -18,10 +18,10 @@ pip install torch gymnasium[box2d] gymnasium[other] stable_baselines3 tensorboar
 
 ## Project Structure
 
-* **train.py:** Trains a PPO agent on the Lunar Lander environment.
-* **test_lunar_lander.py:** Evaluates the trained agent and logs the performance.
-* **watch_lunar_lander.py:** Visualizes the trained agent interacting with the environment.
 * **hugface.py:** Pushes the trained model to the Hugging Face Hub.
+* **test_model.py:** Evaluates the trained agent and logs the performance.
+* **train.py:** Trains a PPO agent on the Lunar Lander environment.
+* **watch_model.py:** Visualizes the trained agent interacting with the environment.
 
 ## Tensorboard:
 
