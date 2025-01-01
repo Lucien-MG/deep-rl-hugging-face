@@ -170,6 +170,12 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+# exclude logs
+models/
+
+# exclude logs
+logs/
+
 # exclude envs
 units/unit_01_bonus/envs
 
