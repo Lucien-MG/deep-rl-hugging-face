@@ -177,10 +177,10 @@ models/
 logs/
 
 # exclude envs
-units/unit_01_bonus/envs
+units/unit_1_bonus/envs
 
 # exclude ml-agents
-units/unit_01_bonus/ml-agents
+units/unit_1_bonus/ml-agents
 
 # Exclude huggy results
-units/unit_01_bonus/results
+units/unit_1_bonus/results
