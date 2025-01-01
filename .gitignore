@@ -169,3 +169,6 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# exclude ml-agents
+units/unit_01_bonus/ml-agents
