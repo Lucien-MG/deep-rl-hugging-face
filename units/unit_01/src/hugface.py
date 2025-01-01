@@ -1,5 +1,3 @@
-from argparse import ArgumentParser
-
 import gymnasium as gym
 
 from stable_baselines3 import PPO
@@ -7,10 +5,13 @@ from stable_baselines3.common.vec_env import DummyVecEnv
 from stable_baselines3.common.env_util import make_vec_env
 
 from huggingface_sb3 import package_to_hub
+from argparse import ArgumentParser
 
 # Parse Args, username and token
 parser = ArgumentParser()
 
+parser.add_argument("-e", "--env", dest="env_id",
+                    help="select the environment")
 parser.add_argument("-u", "--username", dest="username",
                     help="push to the huggingface user's repo")
 parser.add_argument("-t", "--token", dest="token",
@@ -20,7 +21,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Vars
-    env_id = "LunarLander-v3"
+    env_id = args.env_id
 
     model_name = "./models/ppo-" + env_id + "/best_model"
     model_architecture = "PPO"
