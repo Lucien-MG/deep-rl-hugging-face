@@ -5,6 +5,8 @@ This is my python implementation of the Hugging Face Reinforcement Learning tuto
 
 **Course Link:** [Hugging Face Deep RL Course](https://huggingface.co/learn/deep-rl-course/en/unit0/introduction)
 
+**Repository Link:** [Hugging Face Deep RL Repository](https://github.com/huggingface/deep-rl-class)
+
 This course is going to walk me through the key ideas:
 
 * **Reinforcement Learning Basics:**  We'll cover the fundamentals like how agents learn by interacting with their environment and the math behind it all (like those fancy Markov Decision Processes).
