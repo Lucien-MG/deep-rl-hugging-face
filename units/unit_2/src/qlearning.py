@@ -6,10 +6,10 @@ from tqdm import trange
 
 class Qlearning():
 
-    def __init__(self, state_space, action_space):
+    def __init__(self, state_space, action_space, optimistic_value=1):
         # initialized each values at 1, for optimistic exploration
         # this allow better exploration and faster convergence
-        self.q_table = np.ones((state_space, action_space))
+        self.q_table = np.ones((state_space, action_space)) * optimistic_value
 
     def greedy_policy(self, state):
         # Exploitation: take the action with the highest state, action value
@@ -18,8 +18,11 @@ class Qlearning():
         return action
 
     def train(self, env, n_training_episodes, learning_rate, gamma, max_steps):
+        epsilon = 0.9
+
         for episode in trange(n_training_episodes):
             # Reduce epsilon (because we need less and less exploration)
+            epsilon = max(0.01, epsilon - 0.0001)
             # Reset the environment
             state, info = env.reset()
             step = 0
@@ -29,7 +32,10 @@ class Qlearning():
             # repeat
             for step in range(max_steps):
                 # Choose the action At using epsilon greedy policy
-                action = self.greedy_policy(state)
+                if np.random.rand() < epsilon:
+                    action = env.action_space.sample()
+                else:
+                    action = self.greedy_policy(state)
 
                 # Take action At and observe Rt+1 and St+1
                 # Take the action (a) and observe the outcome state(s') and reward (r)

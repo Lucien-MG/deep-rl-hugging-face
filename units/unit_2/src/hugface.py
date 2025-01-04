@@ -245,19 +245,3 @@ def push_model(
     username = username
     repo_name = agent_name + "-" + env_id
     push_to_hub(repo_id=f"{username}/{repo_name}", token=token, model=model, env=env)
-
-
-def watch(Qtable_taxi):
-    env = gym.make(env_id, render_mode="human")
-    obs, info = env.reset()
-
-    done = False
-
-    while not done:
-        print(Qtable_taxi[obs])
-        action = greedy_policy(Qtable_taxi, obs)
-        obs, reward, done, truncated, info = env.step(action)
-        print(reward)
-        env.render()
-
-    env.close()
