@@ -28,9 +28,9 @@ if __name__ == '__main__':
     learning_rate = 0.1
     gamma = 0.99
     n_eval_episodes = 100
-    optimistic_value = -1
+    optimistic_value = 1
 
-    agent = Qlearning(env.observation_space.n, env.action_space.n)
+    agent = Qlearning(env.observation_space.n, env.action_space.n, optimistic_value=optimistic_value)
 
     print("training...")
     agent.train(env, n_training_episodes, learning_rate, gamma, max_steps)

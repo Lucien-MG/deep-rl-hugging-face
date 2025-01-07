@@ -7,8 +7,12 @@ from tqdm import trange
 class Qlearning():
 
     def __init__(self, state_space, action_space, optimistic_value=1):
-        # initialized each values at 1, for optimistic exploration
-        # this allow better exploration and faster convergence
+        """
+        Qlearning: Q-learning algorithm.
+        :param state_space: The size of the state space
+        :param action_space: The size of the action space
+        :param optimistic_value: Set default value in q_tabe (allow faster exploration)
+        """
         self.q_table = np.ones((state_space, action_space)) * optimistic_value
 
     def greedy_policy(self, state):
@@ -18,11 +22,14 @@ class Qlearning():
         return action
 
     def train(self, env, n_training_episodes, learning_rate, gamma, max_steps):
-        epsilon = 0.9
+        epsilon = 0.99
 
-        for episode in trange(n_training_episodes):
+        progress_bar = trange(n_training_episodes)
+        for episode in progress_bar:
             # Reduce epsilon (because we need less and less exploration)
-            epsilon = max(0.01, epsilon - 0.0001)
+            epsilon = max(0.01, epsilon * (1 - 1e-4))
+            progress_bar.set_postfix({'epsilon': epsilon})
+
             # Reset the environment
             state, info = env.reset()
             step = 0
@@ -62,7 +69,7 @@ class Qlearning():
         :param env: The evaluation environment
         :param n_eval_episodes: Number of episode to evaluate the agent
         :param Q: The Q-table
-        :param seed: The evaluation seed array (for taxi-v3)
+        :param seed: The evaluation seed array
         """
         episode_rewards = []
         for episode in trange(n_eval_episodes):
@@ -85,6 +92,7 @@ class Qlearning():
                     break
                 state = new_state
             episode_rewards.append(total_rewards_ep)
+
         mean_reward = np.mean(episode_rewards)
         std_reward = np.std(episode_rewards)
 
