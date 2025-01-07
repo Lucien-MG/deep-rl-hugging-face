@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
     env = gym.make(args.env_id, render_mode="rgb_array")
 
-    n_training_episodes = 150_000
+    n_training_episodes = 100_000
     max_steps = 100
     learning_rate = 0.1
     gamma = 0.99

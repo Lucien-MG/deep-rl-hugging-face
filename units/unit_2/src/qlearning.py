@@ -1,3 +1,5 @@
+from collections import deque
+
 import numpy as np
 
 import pickle
@@ -6,13 +8,15 @@ from tqdm import trange
 
 class Qlearning():
 
-    def __init__(self, state_space, action_space, optimistic_value=1):
+    def __init__(self, state_space, action_space, epsilon_decay=1e-4, optimistic_value=1):
         """
         Qlearning: Q-learning algorithm.
         :param state_space: The size of the state space
         :param action_space: The size of the action space
         :param optimistic_value: Set default value in q_tabe (allow faster exploration)
         """
+        self.epsilon_decay = 1e-4
+
         self.q_table = np.ones((state_space, action_space)) * optimistic_value
 
     def greedy_policy(self, state):
@@ -22,19 +26,17 @@ class Qlearning():
         return action
 
     def train(self, env, n_training_episodes, learning_rate, gamma, max_steps):
+        cum_reward = deque([], maxlen=1000)
         epsilon = 0.99
 
         progress_bar = trange(n_training_episodes)
         for episode in progress_bar:
             # Reduce epsilon (because we need less and less exploration)
-            epsilon = max(0.01, epsilon * (1 - 1e-4))
-            progress_bar.set_postfix({'epsilon': epsilon})
+            epsilon = max(0.01, epsilon * (1 - self.epsilon_decay))
 
             # Reset the environment
             state, info = env.reset()
-            step = 0
-            terminated = False
-            truncated = False
+            cum_reward.append(0)
 
             # repeat
             for step in range(max_steps):
@@ -47,6 +49,8 @@ class Qlearning():
                 # Take action At and observe Rt+1 and St+1
                 # Take the action (a) and observe the outcome state(s') and reward (r)
                 new_state, reward, terminated, truncated, info = env.step(action)
+
+                cum_reward[-1] += reward
 
                 # Update Q(s,a):= Q(s,a) + lr [R(s,a) + gamma * max Q(s',a') - Q(s,a)]
                 if terminated or truncated:
@@ -62,6 +66,11 @@ class Qlearning():
 
                 # Our next state is the new state
                 state = new_state
+            
+            progress_bar.set_postfix({
+                'epsilon': np.round(epsilon, 2),
+                'reward': np.round(np.mean(cum_reward), 2)
+            })
 
     def evaluate_agent(self, env, max_steps, n_eval_episodes, seed):
         """
