@@ -26,16 +26,11 @@ if __name__ == '__main__':
     n_training_episodes = 150_000
     max_steps = 100
     learning_rate = 0.1
-    gamma = 0.99
     n_eval_episodes = 100
-    optimistic_value = -1
 
     # Pickle the model
     model_path = "./models/q-learning-" + args.env_id  + ".pkl"
     with open(model_path, "rb") as f:
         model = pickle.load(f)
-
-    print("evaluating...")
-    mean_reward, std_reward = agent.evaluate_agent(env, max_steps, n_eval_episodes, eval_seed)
 
     push_model(args.username, args.token, "qlearning", agent.q_table, args.env_id, n_training_episodes, n_eval_episodes, eval_seed, learning_rate)
