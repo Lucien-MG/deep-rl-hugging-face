@@ -3,17 +3,40 @@
 I'm stoked to be diving headfirst into the world of Deep Reinforcement Learning (DRL) using the awesome course from Hugging Face.
 This is my python implementation of the Hugging Face Reinforcement Learning tutorial.
 
+## Course
+
+Here is the link that you need to access to Hugging Face's tutorial:
+
 **Course Link:** [Hugging Face Deep RL Course](https://huggingface.co/learn/deep-rl-course/en/unit0/introduction)
 
 **Repository Link:** [Hugging Face Deep RL Repository](https://github.com/huggingface/deep-rl-class)
 
+## Summary
+
 This course is going to walk me through the key ideas:
 
-* **Reinforcement Learning Basics:**  We'll cover the fundamentals like how agents learn by interacting with their environment and the math behind it all (like those fancy Markov Decision Processes).
-* **Powerful Algorithms:**  I'm excited to learn about different approaches like Q-learning and those slick Policy Gradient methods. 
-* **Deep Learning Power-Ups:**  We'll see how deep neural networks supercharge these algorithms, making it possible to solve really complex problems.
-* **Hands-on Training:**  The best part! I'll get to train agents in cool environments and use libraries like Stable Baselines3 to make things easier.
+* **Reinforcement Learning Basics:**  Covering the fundamentals like how agents learn by interacting with their environment and the math behind it all (like those fancy Markov Decision Processes).
+* **Powerful Algorithms:**  Learning about different approaches like Q-learning and those slick Policy Gradient methods. 
+* **Deep Learning Power-Ups:**  Seeing how deep neural networks supercharge these algorithms, making it possible to solve really complex problems.
+* **Hands-on Training:**  The best part! Training agents in cool environments and use libraries like Stable Baselines3 to make things easier.
 
 Basically, I'm going to learn how to build intelligent agents that can learn to do amazing things! I can't wait to share what I learn along the way. 
 
 **In a nutshell:** This course is going to give me the skills and knowledge to build awesome DRL agents. Let's do this!
+
+## Table of Contents
+
+1. [Train your first Deep Reinforcement Learning Agent](#example)
+2. [Introduction to Q-Learning](#example2)
+3. [Deep Q-Learning with Atari Games](#third-example)
+
+## Ressources
+
+Also, if you are realy interested into reinforcement learning, you should consider these ressources:
+
+### books
+
+- **Reinforcement Learning An Introduction second edition**
+by Richard S. Sutton and Andrew G. Barto.
+- **Grokking Deep Reinforcement Learning**
+by Miguel Morales
