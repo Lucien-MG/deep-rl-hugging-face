@@ -27,7 +27,7 @@ if __name__ == '__main__':
     model_architecture = "PPO"
     model = PPO.load(model_name)
 
-    repo_id = args.username + "/" + env_id
+    repo_id = args.username + "/" + "ppo" + "-" + env_id
     commit_message = "Upload PPO " + env_id + " trained agent."
 
     print("Push to repo:", repo_id)
