@@ -40,3 +40,5 @@ Also, if you are realy interested into reinforcement learning, you should consid
 by Richard S. Sutton and Andrew G. Barto.
 - **Grokking Deep Reinforcement Learning**
 by Miguel Morales
+- **Multi-Agent Reinforcement Learning: Foundations and Modern Approaches**
+by Stefano V. Albrecht,  Filippos Christianos,  Lukas Schäfer 
