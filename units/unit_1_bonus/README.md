@@ -1,11 +1,14 @@
 # Bonus Unit 1: Introduction to Deep Reinforcement Learning with Huggy
 
+In this bonus unit, we’ll reinforce what we learned in the first unit by teaching Huggy the Dog
+to fetch the stick and then play with him directly in your browser.
+
 ## Train:
 
 To train the agent run:
 
 ```bash
-mlagents-learn ./config.yaml --env=./envs/Huggy/Huggy.x86_64 --run-id="Huggy" --no-graphics
+mlagents-learn ./Huggy.yaml --env=./envs/Huggy/Huggy.x86_64 --run-id="Huggy" --no-graphics
 ```
 
 ## Push trained agent to hugging face:
