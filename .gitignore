@@ -176,6 +176,8 @@ models/
 # exclude logs
 logs/
 
+hf_repos/
+
 # exclude envs
 units/unit_1_bonus/envs
 
