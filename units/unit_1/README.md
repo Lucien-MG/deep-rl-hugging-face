@@ -27,9 +27,14 @@ You can easily watch your agent perform thanks to this command:
 python src/test_model.py -e "LunarLander-v3"
 ```
 
-You can easily watch your agent perform thanks to this command:
+You can easily watch your agent in local perform (while training or not) thanks to this command:
 ```bash
-python src/watch_model.py -e "LunarLander-v3"
+python src/watch_model.py -e LunarLander-v3 -f ./models/ppo-LunarLander-v3/best_model.zip
+```
+
+Or watch your agent pushed to hugging face perform with:
+```bash
+python src/watch_model.py -e LunarLander-v3 -r {username}/ppo-LunarLander-v3 -f ./models/ppo-LunarLander-v3/best_model.zip
 ```
 
 ## Push your models
