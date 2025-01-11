@@ -176,6 +176,8 @@ models/
 # exclude logs
 logs/
 
+# Temporary generated hugging face repos
+repos/
 hf_repos/
 
 # exclude envs
