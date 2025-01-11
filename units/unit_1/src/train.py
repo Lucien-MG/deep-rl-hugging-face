@@ -28,8 +28,12 @@ if __name__ == '__main__':
     env = make_vec_env(env_id, n_envs=n_training_envs)
     eval_env = Monitor(gym.make(env_id))
 
+    policy_kwargs = dict(activation_fn=th.nn.ReLU,
+                     net_arch=dict(pi=[16, 16], vf=[16, 16]))
+
     model = PPO(
         policy="MlpPolicy",
+        policy_kwargs=policy_kwargs,
         env=env,
         learning_rate=3e-3,
         n_steps=512,
