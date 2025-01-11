@@ -203,7 +203,7 @@ def package_to_hub(
     )
 
     # Step 0: create directory
-    directory = Path("./hf_repos/" + repo_id)
+    directory = Path("./repos/" + repo_id)
     directory.mkdir(parents=True, exist_ok=True)
 
     # Step 1: save model
