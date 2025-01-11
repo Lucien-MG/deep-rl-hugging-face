@@ -7,13 +7,11 @@ from stable_baselines3.common.monitor import Monitor
 
 from argparse import ArgumentParser
 
-# Parse Args, username and token
 parser = ArgumentParser()
 
 parser.add_argument("-e", "--env", dest="env_id",
                     help="push to the huggingface user's repo")
 
-# Main
 if __name__ == '__main__':
     args = parser.parse_args()
 
