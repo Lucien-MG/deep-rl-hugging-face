@@ -192,7 +192,7 @@ def package_to_hub(
 
     print(
         "This function will save, evaluate, generate a video of your agent, "
-        + "create a model card and push everything to the hub. "
+        + "create a model card and push everything to the hub."
     )
 
     repo_url = HfApi().create_repo(
