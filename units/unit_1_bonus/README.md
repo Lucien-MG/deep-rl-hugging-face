@@ -22,11 +22,7 @@ huggingface-cli login
 then push with the command:
 
 ```bash
-mlagents-push-to-hf
-    --run-id="Huggy"
-    --local-dir="./results/Huggy"
-    --repo-id="Username/ppo-Huggy"
-    --commit-message="Your Message"
+mlagents-push-to-hf --run-id="Huggy" --local-dir="./results/Huggy" --repo-id="Username/ppo-Huggy" --commit-message="Your Message"
 ```
 
 ## Dependencies
