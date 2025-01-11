@@ -124,13 +124,26 @@ using the [stable-baselines3 library](https://github.com/DLR-RM/stable-baselines
 
     model_card += """
 ## Usage (with Stable-baselines3)
-TODO: Add your code
-
 
 ```python
-from stable_baselines3 import ...
+from stable_baselines3 import PPO
 from huggingface_sb3 import load_from_hub
 
+model_filename = load_from_hub(your_repo_id, your_filename)
+
+model = PPO.load(model_filename)
+
+env = gym.make({env_id}, render_mode="human")
+    obs, info = env.reset()
+
+    done = False
+
+    while not done:
+        action, _states = model.predict(obs, deterministic=True)
+        obs, rewards, done, truncated, info = env.step(action)
+        env.render()
+
+    env.close()
 ...
 ```
 """
