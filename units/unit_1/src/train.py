@@ -13,7 +13,6 @@ parser = ArgumentParser()
 parser.add_argument("-e", "--env", dest="env_id",
                     help="push to the huggingface user's repo")
 
-# Main
 if __name__ == '__main__':
     args = parser.parse_args()
 
@@ -25,11 +24,11 @@ if __name__ == '__main__':
     n_eval_episodes = 200
     n_training_envs = 32
 
-    env = make_vec_env(env_id, n_envs=n_training_envs)
-    eval_env = Monitor(gym.make(env_id))
-
     policy_kwargs = dict(activation_fn=th.nn.ReLU,
                      net_arch=dict(pi=[16, 16], vf=[16, 16]))
+
+    env = make_vec_env(env_id, n_envs=n_training_envs)
+    eval_env = Monitor(gym.make(env_id))
 
     model = PPO(
         policy="MlpPolicy",
@@ -43,7 +42,8 @@ if __name__ == '__main__':
         gae_lambda=0.98,
         ent_coef=0.01,
         verbose=0,
-        tensorboard_log="./logs/ppo_" + env_id + "/"
+        tensorboard_log="./logs/ppo_" + env_id + "/",
+        progress_bar=True
     )
 
     eval_callback = EvalCallback(eval_env, best_model_save_path=model_save_path,
