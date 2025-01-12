@@ -144,7 +144,6 @@ env = gym.make({env_id}, render_mode="human")
         env.render()
 
     env.close()
-...
 ```
 """
 
