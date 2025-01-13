@@ -15,7 +15,7 @@ Two folders will be created at training time,
 ## Training
 
 All the training is done in local on my laptop, I tweaked hyperparameters to accelerate the training.
-You can train the agent for 800_000 steps it will reach the required score. It takes about 25 minutes.
+You can train the agent for 800_000 steps it will reach the required score. It takes about 25 minutes on a modern cpu.
 
 ## How to use it ?
 
@@ -35,12 +35,12 @@ python src/test_model.py -e "LunarLander-v3"
 
 You can easily watch your agent in local perform (while training or not) thanks to this command:
 ```bash
-python src/watch_model.py -e LunarLander-v3 -f ./models/ppo-LunarLander-v3/best_model.zip
+python src/watch_model.py -e "LunarLander-v3" -f ./models/ppo-LunarLander-v3/best_model.zip
 ```
 
 Or watch your agent pushed to hugging face perform with:
 ```bash
-python src/watch_model.py -e LunarLander-v3 -r {username}/ppo-LunarLander-v3 -f ./models/ppo-LunarLander-v3/best_model.zip
+python src/watch_model.py -e "LunarLander-v3" -r {username}/ppo-LunarLander-v3 -f ./models/ppo-LunarLander-v3/best_model.zip
 ```
 
 ## Push your models
