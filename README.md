@@ -30,15 +30,15 @@ Basically, I'm going to learn how to build intelligent agents that can learn to 
 2. [Introduction to Q-Learning](#example2)
 3. [Deep Q-Learning with Atari Games](#third-example)
 
-## Ressources
+## More Ressources
 
 Also, if you are realy interested into reinforcement learning, you should consider these ressources:
 
 ### books
 
-- **Reinforcement Learning An Introduction second edition**
+* [**Reinforcement Learning An Introduction second edition**]((http://incompleteideas.net/book/the-book.html))
 by Richard S. Sutton and Andrew G. Barto.
-- **Grokking Deep Reinforcement Learning**
+* **Grokking Deep Reinforcement Learning**
 by Miguel Morales
-- **Multi-Agent Reinforcement Learning: Foundations and Modern Approaches**
+* **Multi-Agent Reinforcement Learning: Foundations and Modern Approaches**
 by Stefano V. Albrecht,  Filippos Christianos,  Lukas Schäfer 
