@@ -126,6 +126,8 @@ using the [stable-baselines3 library](https://github.com/DLR-RM/stable-baselines
 ## Usage (with Stable-baselines3)
 
 ```python
+import gymnasium as gym
+
 from stable_baselines3 import PPO
 from huggingface_sb3 import load_from_hub
 
