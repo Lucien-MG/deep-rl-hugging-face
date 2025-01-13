@@ -34,19 +34,19 @@ Edit the src/train.py file to try different parameters.
 At any moment you can evaluate your agent with:
 You can easily watch your agent perform thanks to this command:
 ```bash
-python src/eval.py -e "LunarLander-v3" -f ./models/ppo-LunarLander-v3/best_model.zip
+python src/eval.py -e "LunarLander-v3" -f models/ppo-LunarLander-v3/best_model.zip
 ```
 
 ### Watch it perform
 
 You can easily watch your agent in local perform (while training or not) thanks to this command:
 ```bash
-python src/watch.py -e "LunarLander-v3" -f ./models/ppo-LunarLander-v3/best_model.zip
+python src/watch.py -e "LunarLander-v3" -f models/ppo-LunarLander-v3/best_model.zip
 ```
 
 Or watch your agent pushed to hugging face perform with:
 ```bash
-python src/watch.py -e "LunarLander-v3" -r {username}/ppo-LunarLander-v3 -f ./models/ppo-LunarLander-v3/best_model.zip
+python src/watch.py -e "LunarLander-v3" -r {username}/ppo-LunarLander-v3 -f models/ppo-LunarLander-v3/best_model.zip
 ```
 
 ## Push your models
