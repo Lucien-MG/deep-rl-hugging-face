@@ -36,9 +36,18 @@ Also, if you are realy interested into reinforcement learning, you should consid
 
 ### books
 
-* [**Reinforcement Learning An Introduction second edition**](http://incompleteideas.net/book/the-book.html)
+* [**Reinforcement Learning An Introduction second edition**](http://incompleteideas.net/book/the-book.html)  
 by Richard S. Sutton and Andrew G. Barto.
-* **Grokking Deep Reinforcement Learning**
+* **Grokking Deep Reinforcement Learning**  
 by Miguel Morales
-* **Multi-Agent Reinforcement Learning: Foundations and Modern Approaches**
-by Stefano V. Albrecht,  Filippos Christianos,  Lukas Schäfer 
+* **Multi-Agent Reinforcement Learning: Foundations and Modern Approaches**  
+by Stefano V. Albrecht,  Filippos Christianos,  Lukas Schäfer
+
+### Websites
+
+* [**OpenAI Spinnning Up**](https://spinningup.openai.com/en/latest)
+* [**David Silver's Course**](https://www.davidsilver.uk/teaching/)
+* [**Denny Britz's Github**](https://github.com/dennybritz/reinforcement-learning)
+* [**Lilian's blog**](https://lilianweng.github.io/)
+* [**Pytorch's tutorial**](https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html)
+* [**Pytorch lightning's tutorial**](https://lightning.ai/docs/pytorch/stable/notebooks/lightning_examples/reinforce-learning-DQN.html)
