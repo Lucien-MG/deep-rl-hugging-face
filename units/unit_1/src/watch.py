@@ -3,8 +3,6 @@ import gymnasium as gym
 
 from stable_baselines3 import PPO
 
-from huggingface_sb3 import load_from_hub
-
 from argparse import ArgumentParser
 
 parser = ArgumentParser()
@@ -22,6 +20,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.repo_id != None:
+        from huggingface_sb3 import load_from_hub
         print("Loading model from hub...")
         model_filename = load_from_hub(args.repo_id, args.filename)
     else:

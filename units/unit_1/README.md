@@ -20,28 +20,33 @@ You can train the agent for 800_000 steps it will reach the required score. It t
 
 ## How to use it ?
 
+### Train the agent
+
 You can run the training of the ppo with this command:
 
 ```bash
 python src/train.py -e "LunarLander-v3"
 ```
-
 Edit the src/train.py file to try different parameters. 
+
+### Evaluate performance
 
 At any moment you can evaluate your agent with:
 You can easily watch your agent perform thanks to this command:
 ```bash
-python src/test_model.py -e "LunarLander-v3"
+python src/eval.py -e "LunarLander-v3" -f ./models/ppo-LunarLander-v3/best_model.zip
 ```
+
+### Watch it perform
 
 You can easily watch your agent in local perform (while training or not) thanks to this command:
 ```bash
-python src/watch_model.py -e "LunarLander-v3" -f ./models/ppo-LunarLander-v3/best_model.zip
+python src/watch.py -e "LunarLander-v3" -f ./models/ppo-LunarLander-v3/best_model.zip
 ```
 
 Or watch your agent pushed to hugging face perform with:
 ```bash
-python src/watch_model.py -e "LunarLander-v3" -r {username}/ppo-LunarLander-v3 -f ./models/ppo-LunarLander-v3/best_model.zip
+python src/watch.py -e "LunarLander-v3" -r {username}/ppo-LunarLander-v3 -f ./models/ppo-LunarLander-v3/best_model.zip
 ```
 
 ## Push your models
