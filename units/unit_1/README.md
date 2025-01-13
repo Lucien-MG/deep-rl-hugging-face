@@ -2,12 +2,13 @@
 
 ## Project Structure
 
+Scripts:
 * **hugface.py:** Pushes the trained model to the Hugging Face Hub.
 * **test_model.py:** Evaluates the trained agent and logs the performance.
 * **train.py:** Trains a PPO agent on the Lunar Lander environment.
 * **watch_model.py:** Visualizes the trained agent interacting with the environment.
 
-Two folders will be created at training time,
+These folders will be created at training time,
 * **logs:** which will contain tensorbord training logs
 * **models:** which will contain trained models
 * **repos:** which will contain the generated hugging face repo
