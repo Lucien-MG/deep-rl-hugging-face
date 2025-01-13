@@ -122,7 +122,7 @@ This is a trained model of a **{model_name}** agent playing **{env_id}**
 using the [stable-baselines3 library](https://github.com/DLR-RM/stable-baselines3).
 """
 
-    model_card += """
+    model_card += f"""
 ## Usage (with Stable-baselines3)
 
 ```python
@@ -131,11 +131,11 @@ import gymnasium as gym
 from stable_baselines3 import PPO
 from huggingface_sb3 import load_from_hub
 
-model_filename = load_from_hub(your_repo_id, your_filename)
+model_filename = load_from_hub(repo_id, 'models/ppo-LunarLander-v3/best_model.zip')
 
 model = PPO.load(model_filename)
 
-env = gym.make({env_id}, render_mode="human")
+env = gym.make(**{env_id}**, render_mode="human")
     obs, info = env.reset()
 
     done = False
