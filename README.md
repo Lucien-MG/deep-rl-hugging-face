@@ -46,6 +46,8 @@ by Stefano V. Albrecht,  Filippos Christianos,  Lukas Schäfer
 ### Websites
 
 * [**OpenAI Spinnning Up**](https://spinningup.openai.com/en/latest)
+* [**Berkeley’s Deep RL Bootcamp**](https://sites.google.com/view/deep-rl-bootcamp/lectures)
+* [**Berkeley’s Deep Reinforcement Learning course**](http://rail.eecs.berkeley.edu/deeprlcourse/)
 * [**David Silver's Course**](https://www.davidsilver.uk/teaching/)
 * [**Denny Britz's Github**](https://github.com/dennybritz/reinforcement-learning)
 * [**Lilian's blog**](https://lilianweng.github.io/)
