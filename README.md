@@ -34,7 +34,7 @@ Basically, I'm going to learn how to build intelligent agents that can learn to 
 
 Also, if you are realy interested into reinforcement learning, you should consider these ressources:
 
-### books
+### Books
 
 * [**Reinforcement Learning An Introduction second edition**](http://incompleteideas.net/book/the-book.html)  
 by Richard S. Sutton and Andrew G. Barto.
