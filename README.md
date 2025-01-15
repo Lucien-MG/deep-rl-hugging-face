@@ -63,5 +63,6 @@ by Dimitri Bertsekas
 
 ### Repositories
 
+* [**Clean RL**](https://github.com/vwxyzjn/cleanrl)
 * [**RL in the real world**](https://github.com/ugurkanates/awesome-real-world-rl)
 * [**Denny Britz's Github**](https://github.com/dennybritz/reinforcement-learning)
