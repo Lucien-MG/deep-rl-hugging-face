@@ -42,6 +42,14 @@ by Richard S. Sutton and Andrew G. Barto.
 by Miguel Morales
 * **Multi-Agent Reinforcement Learning: Foundations and Modern Approaches**  
 by Stefano V. Albrecht,  Filippos Christianos,  Lukas Schäfer
+* **Reinforcement Learning and Stochastic Optimization: A Unified Framework for Sequential Decisions**  
+by Warren B. Powell
+* **Algorithms for Reinforcement Learning**  
+by Csaba Szepesvari (Author)
+* **Bandit Algorithms**  
+by Tor Lattimore and Csaba Szepesvári
+* **Reinforcement Learning and Optimal Control**  
+by Dimitri Bertsekas
 
 ### Websites
 
@@ -49,7 +57,11 @@ by Stefano V. Albrecht,  Filippos Christianos,  Lukas Schäfer
 * [**Berkeley’s Deep RL Bootcamp**](https://sites.google.com/view/deep-rl-bootcamp/lectures)
 * [**Berkeley’s Deep Reinforcement Learning course**](http://rail.eecs.berkeley.edu/deeprlcourse/)
 * [**David Silver's Course**](https://www.davidsilver.uk/teaching/)
-* [**Denny Britz's Github**](https://github.com/dennybritz/reinforcement-learning)
 * [**Lilian's blog**](https://lilianweng.github.io/)
 * [**Pytorch's tutorial**](https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html)
 * [**Pytorch lightning's tutorial**](https://lightning.ai/docs/pytorch/stable/notebooks/lightning_examples/reinforce-learning-DQN.html)
+
+### Repositories
+
+* [**RL in the real world**](https://github.com/ugurkanates/awesome-real-world-rl)
+* [**Denny Britz's Github**](https://github.com/dennybritz/reinforcement-learning)
