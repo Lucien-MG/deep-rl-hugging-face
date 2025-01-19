@@ -181,10 +181,10 @@ repos/
 hf_repos/
 
 # exclude envs
-units/unit_1_bonus/envs
+envs/
 
 # exclude ml-agents
-units/unit_1_bonus/ml-agents
+ml-agents/
 
-# Exclude huggy results
-units/unit_1_bonus/results
+# Exclude ml agents results
+results/
