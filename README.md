@@ -45,7 +45,7 @@ by Stefano V. Albrecht,  Filippos Christianos,  Lukas Schäfer
 * **Reinforcement Learning and Stochastic Optimization: A Unified Framework for Sequential Decisions**  
 by Warren B. Powell
 * **Algorithms for Reinforcement Learning**  
-by Csaba Szepesvari (Author)
+by Csaba Szepesvari
 * **Bandit Algorithms**  
 by Tor Lattimore and Csaba Szepesvári
 * **Reinforcement Learning and Optimal Control**  
