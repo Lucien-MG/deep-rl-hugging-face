@@ -3,7 +3,7 @@ SpaceInvadersNoFrameskip-v4:
     - stable_baselines3.common.atari_wrappers.AtariWrapper
   frame_stack: 4
   policy: 'CnnPolicy'
-  n_timesteps: !!float 1e7
+  n_timesteps: !!float 1e6
   buffer_size: 100000
   learning_rate: !!float 1e-4
   batch_size: 32
