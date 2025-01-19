@@ -29,6 +29,7 @@ Basically, I'm going to learn how to build intelligent agents that can learn to 
 1. [Train your first Deep Reinforcement Learning Agent](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_1)
 2. [Introduction to Q-Learning](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_2)
 3. [Deep Q-Learning with Atari Games](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_3)
+5. [An Introduction to Unity ML-Agents](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_5)
 
 ## More Ressources
 
