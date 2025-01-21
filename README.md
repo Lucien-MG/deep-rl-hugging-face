@@ -11,6 +11,8 @@ Here is the link that you need to access to Hugging Face's tutorial:
 
 **Repository Link:** [Hugging Face Deep RL Repository](https://github.com/huggingface/deep-rl-class)
 
+**Check Your Progress:** [Hugging Face Check My Progress](https://huggingface.co/spaces/ThomasSimonini/Check-my-progress-Deep-RL-Course)
+
 ## Summary
 
 This course is going to walk me through the key ideas:
