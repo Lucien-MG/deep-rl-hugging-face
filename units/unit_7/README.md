@@ -1,7 +1,6 @@
 # Unit 7: An Introduction to Unity ML-Agents
 
-In this unit, we’ll train two agent, one agent that play SnowballTarget and
-another one that will play Pyramids.
+In this unit, we will one agent that play SoccerTwos.
 
 ## Train:
 
