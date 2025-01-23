@@ -29,9 +29,14 @@ Basically, I'm going to learn how to build intelligent agents that can learn to 
 ## Table of Contents
 
 1. [Train your first Deep Reinforcement Learning Agent](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_1)
-2. [Introduction to Q-Learning](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_2)
-3. [Deep Q-Learning with Atari Games](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_3)
-5. [An Introduction to Unity ML-Agents](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_5)
+1. [Introduction to Q-Learning](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_2)
+1. [Deep Q-Learning with Atari Games](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_3)
+1. [Policy Gradient with Pytorch](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_4)
+1. [An Introduction to Unity ML-Agents](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_5)
+1. [Actor Critic Methods with Robotics Environments](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_6)
+1. [Introduction to Multi-Agents and AI vs AI](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_7)
+1. [Proximal Policy Optimisation (PPO)](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_8)
+
 
 ## More Ressources
 
