@@ -44,7 +44,7 @@ Also, if you are realy interested into reinforcement learning, you should consid
 
 ### Books
 
-* [**Reinforcement Learning An Introduction second edition**] 
+* **Reinforcement Learning An Introduction second edition**  
 by Richard S. Sutton and Andrew G. Barto.
 * **Grokking Deep Reinforcement Learning**  
 by Miguel Morales
