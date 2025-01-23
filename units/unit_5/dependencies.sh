@@ -8,7 +8,7 @@ wget "https://huggingface.co/spaces/unity/ML-Agents-Pyramids/resolve/main/Pyrami
 unzip -d ./envs/ ./Pyramids.zip
 
 chmod -R 755 ./envs/SnowballTarget/SnowballTarget.x86_64
-chmod -R 755 ./envs/Pyramids/Pyramids.x86_64
+chmod -R 755 ./envs/Pyramids/Pyramids
 
 rm ./SnowballTarget.zip
 rm ./Pyramids.zip
