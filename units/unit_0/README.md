@@ -4,6 +4,10 @@ This course is offered by Hugging Face.
 
 **Course Link:** [Hugging Face Deep RL Course](https://huggingface.co/learn/deep-rl-course/en/unit0/introduction)
 
+**Repository Link:** [Hugging Face Deep RL Repository](https://github.com/huggingface/deep-rl-class)
+
+**Check Your Progress:** [Hugging Face Check My Progress](https://huggingface.co/spaces/ThomasSimonini/Check-my-progress-Deep-RL-Course)
+
 ## Content
 
 In this course:
