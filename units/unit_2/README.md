@@ -28,7 +28,7 @@ Edit the src/train.py file to try different parameters.
 
 ### Watch it perform
 
-You can easily watch your agent in local perform (while training or not) thanks to this command:
+You can easily watch your agent in local perform thanks to this command:
 ```bash
 python src/watch.py -e "Taxi-v3" -m models/q-learning-Taxi-v3.pkl
 ```
