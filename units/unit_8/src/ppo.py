@@ -13,20 +13,21 @@ class Agent(nn.Module):
     def __init__(self, envs):
         super(Agent, self).__init__()
         
+        print(envs.single_observation_space.shape)
         self.critic = nn.Sequential(
-            layer_init(nn.Linear(torch.tensor(envs.single_observation_space.shape).prod(), 64)),
+            layer_init(nn.Linear(torch.tensor(envs.single_observation_space.shape).prod(), 24)),
             nn.Tanh(),
-            layer_init(nn.Linear(64, 64)),
+            layer_init(nn.Linear(24, 24)),
             nn.Tanh(),
-            layer_init(nn.Linear(64, 1), std=1.)
+            layer_init(nn.Linear(24, 1), std=1.)
         )
 
         self.actor = nn.Sequential(
-            layer_init(nn.Linear(torch.tensor(envs.single_observation_space.shape).prod(), 64)),
+            layer_init(nn.Linear(torch.tensor(envs.single_observation_space.shape).prod(), 24)),
             nn.Tanh(),
-            layer_init(nn.Linear(64, 64)),
+            layer_init(nn.Linear(24, 24)),
             nn.Tanh(),
-            layer_init(nn.Linear(64, envs.single_action_space.n), std=0.01)
+            layer_init(nn.Linear(24, envs.single_action_space.n), std=0.01)
         )
     
     def get_value(self, x):
