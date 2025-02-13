@@ -18,8 +18,6 @@ def parse_arg():
         help="the name of this experiment")
     parser.add_argument("--seed", type=int, default=1,
         help="seed of the experiment")
-    parser.add_argument("--torch-deterministic", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=True,
-        help="if toggled, `torch.backends.cudnn.deterministic=False`")
     parser.add_argument("--capture-video", type=lambda x: bool(strtobool(x)), default=False, nargs="?", const=True,
         help="weather to capture videos of the agent performances (check out `videos` folder)")
 
@@ -63,23 +61,7 @@ def parse_arg():
 
     return parser.parse_args()
 
-#def make_env(env_id, seed):
-#    def thunk():
-#        env = gym.make(args.env_id, render_mode="rgb_array")
-#
-#        #print(env)
-#
-#        #env.seed(seed)
-#        #env.action_space.seed(seed)
-#        #env.observation_space.seed(seed)
-#
-#        env = gym.wrappers.RecordEpisodeStatistics(env)
-#        env = gym.wrappers.RecordVideo(env, "videos", step_trigger=lambda t: t % 1000 == 0)
-#
-#        return env
-#    return thunk
-
-def train_ppo(envs, eval_env, policy):
+def train_ppo(envs, eval_envs, policy):
     score = float("-inf")
 
     optimizer = torch.optim.Adam(agent.parameters(), lr=args.learning_rate, eps=1e-5)
@@ -101,10 +83,15 @@ def train_ppo(envs, eval_env, policy):
     print("Number of rollouts:", num_updates)
 
     for update in range(1, num_updates + 1):
+        print("Rollout n°" + str(update) + " / " + str(num_updates + 1))
+
         if args.anneal_lr:
             frac = 1.0 - (update - 1.0) / num_updates
             lrnow = frac * args.learning_rate
             optimizer.param_groups[0]["lr"] = lrnow
+
+        training_mean_reward = []
+        training_length = []
 
         for step in range(0, args.num_steps):
             global_step += 1 * args.num_envs
@@ -123,9 +110,8 @@ def train_ppo(envs, eval_env, policy):
 
             for item in info:
                 if item == "episode":
-                    # print(f"global_step={global_step}, episodic_return={info['episode']['r']}")
-                    writer.add_scalar("charts/episodic_return", info["episode"]["r"].max(), global_step)
-                    writer.add_scalar("charts/episodic_length", info["episode"]["l"].max(), global_step)
+                    training_mean_reward.append(info["episode"]["r"].max())
+                    training_length.append(info["episode"]["l"].max())
                     break
         
         # bootstrap value if not done
@@ -224,26 +210,35 @@ def train_ppo(envs, eval_env, policy):
         explained_var = np.nan if var_y == 0 else 1 - np.var(y_true - y_pred) / var_y
 
         # Evaluate:
-        mean_reward, std_reward = evaluate_agent(eval_env, 10, policy)
+        mean_reward, std_reward = evaluate_agent(eval_envs, policy, 100)
         tmp_score = mean_reward - std_reward
+
+        print("Score:", tmp_score)
 
         if tmp_score > score:
             score = tmp_score
-            torch.save(agent.state_dict(), 'model_weights.pth')
+            torch.save(agent.state_dict(), 'models/model_weights.pth')
 
-            print("New best score:", score, " saving model.")
+            print("New best score:", score, "saving model.")
+            #video = record_video(eval_env, policy=agent, out_directory="videos/result.gif")
+            #writer.add_video("video/mean_reward", video, global_step)
 
         # TRY NOT TO MODIFY: record rewards for plotting purposes
         writer.add_scalar("eval/score", tmp_score, global_step)
-        writer.add_scalar("eval/mean_reward", tmp_score, global_step)
+        writer.add_scalar("eval/mean_reward", mean_reward, global_step)
 
         writer.add_scalar("charts/learning_rate", optimizer.param_groups[0]["lr"], global_step)
+        writer.add_scalar("charts/mean_episodic_return", np.mean(training_mean_reward), global_step)
+        writer.add_scalar("charts/mean_episodic_length", np.mean(training_length), global_step)
+
         writer.add_scalar("losses/value_loss", v_loss.item(), global_step)
         writer.add_scalar("losses/policy_loss", pg_loss.item(), global_step)
         writer.add_scalar("losses/entropy", entropy_loss.item(), global_step)
         writer.add_scalar("losses/approx_kl", approx_kl.item(), global_step)
         writer.add_scalar("losses/clipfrac", np.mean(clipfracs), global_step)
         writer.add_scalar("losses/explained_variance", explained_var, global_step)
+
+        print("")
     
     envs.close()
 
@@ -253,10 +248,7 @@ if __name__ == "__main__":
     args.batch_size = int(args.num_envs * args.num_steps)
     args.minibatch_size = int(args.batch_size // args.num_minibatches)
 
-    run_name = f"PPO_{args.env_id}_{args.exp_name}"
-
-    writer = SummaryWriter(f"logs/{run_name}")
-
+    writer = SummaryWriter(f"logs/PPO_{args.env_id}_{args.exp_name}")
     writer.add_text(
         "hyperparameters",
         "|param|value|\n|-|-|\n%s" % ("\n".join([f"|{key}|{value}|" for key, value in vars(args).items()])),
@@ -267,20 +259,27 @@ if __name__ == "__main__":
     torch.manual_seed(args.seed)
 
     envs = gym.make_vec(
-                    args.env_id,
-                    num_envs=args.num_envs, vectorization_mode="sync",
-                    wrappers=(
-                        gym.wrappers.RecordEpisodeStatistics,
-                        )
+            args.env_id,
+            num_envs=args.num_envs,
+            vectorization_mode="sync",
+            wrappers=(
+                gym.wrappers.RecordEpisodeStatistics,
                 )
-
-    # record env
-    eval_env = gym.make(args.env_id, render_mode="rgb_array")
+            )
+    
+    eval_envs = gym.make_vec(
+            args.env_id,
+            num_envs=args.num_envs,
+            vectorization_mode="sync",
+            wrappers=(
+                gym.wrappers.RecordEpisodeStatistics,
+                )
+            )
     
     assert isinstance(envs.single_action_space, gym.spaces.Discrete), "only discrete action space is supported"
 
     agent = Agent(envs)
 
-    train_ppo(envs, eval_env, agent)
+    train_ppo(envs, eval_envs, agent)
 
-    record_video(eval_env, policy=agent, out_directory="videos/result.gif")
+    # record_video(eval_env, policy=agent, out_directory="videos/result.gif")
