@@ -9,6 +9,7 @@ def record_video(env, policy, out_directory, fps=30):
     done, truncated = False, False
     state, info = env.reset()
     img = env.render()
+    img = np.moveaxis(img, -1, 0)
     images.append(img)
     while not done and not truncated:
         state = torch.from_numpy(state).unsqueeze(0)
@@ -18,34 +19,33 @@ def record_video(env, policy, out_directory, fps=30):
             action.cpu().numpy()[0]
         )  # We directly put next_state = state for recording logic
         img = env.render()
+        img = np.moveaxis(img, -1, 0)
         images.append(img)
-    imageio.mimsave(out_directory, [np.array(img) for i, img in enumerate(images)], fps=fps)
 
-def evaluate_agent(env, n_eval_episodes, policy):
+    video = np.array([[np.array(img) for i, img in enumerate(images)]])
+    return video
+    # imageio.mimsave(out_directory, [np.array(img) for i, img in enumerate(images)], fps=fps)
+
+def evaluate_agent(eval_envs, policy, n_eval_episodes, seed=42):
     """
     Evaluate the agent for ``n_eval_episodes`` episodes and returns average reward and std of reward.
     :param env: The evaluation environment
-    :param n_eval_episodes: Number of episode to evaluate the agent
     :param policy: The agent
+    :param n_eval_episodes: Number of episode to evaluate the agent
     """
-    print("Evaluating agent.")
-
     episode_rewards = []
-    for episode in range(n_eval_episodes):
-        state, info = env.reset()
-        step = 0
-        done, truncated = False, False
-        total_rewards_ep = 0
+    next_obs, info = eval_envs.reset(seed=seed)
 
-        while done is False and truncated is False:
-            state = torch.from_numpy(state).unsqueeze(0)
-            action, _, _, _ = policy.get_action_and_value(state)
-            new_state, reward, done, truncated, info = env.step(action.cpu().numpy()[0])
-            total_rewards_ep += reward
-            if done:
-                break
-            state = new_state
-        episode_rewards.append(total_rewards_ep)
+    while len(episode_rewards) < n_eval_episodes:
+        with torch.no_grad():
+            next_obs = torch.from_numpy(next_obs)
+            action, logprob, _, value = policy.get_action_and_value(next_obs)
+        next_obs, _, _, _, info = eval_envs.step(action.numpy())
+        
+        for item in info:
+            if item == "episode":
+                episode_rewards.append(info["episode"]["r"].max())
+
     mean_reward = np.mean(episode_rewards)
     std_reward = np.std(episode_rewards)
 
