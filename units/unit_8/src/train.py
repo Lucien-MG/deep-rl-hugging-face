@@ -5,9 +5,10 @@ import argparse
 import gymnasium as gym
 import numpy as np
 
-from ppo import Agent
-
 from torch.utils.tensorboard import SummaryWriter
+
+from ppo import Agent
+from hugface import *
 
 def parse_arg():
     parser = argparse.ArgumentParser()
@@ -27,11 +28,11 @@ def parse_arg():
         help="the id of the environment")
     parser.add_argument("--total-timesteps", type=int, default=100000,
         help="total timesteps of the experiments")
-    parser.add_argument("--learning-rate", type=float, default=6.5e-4,
+    parser.add_argument("--learning-rate", type=float, default=4e-3,
         help="the learning rate of the optimizer")
     parser.add_argument("--num-envs", type=int, default=4,
         help="the number of parallel game environments")
-    parser.add_argument("--num-steps", type=int, default=512,
+    parser.add_argument("--num-steps", type=int, default=256,
         help="the number of steps to run in each environment per policy rollout")
     parser.add_argument("--anneal-lr", type=lambda x: bool(strtobool(x)), default=True, nargs="?", const=True,
         help="Toggle learning rate annealing for policy and value networks")
@@ -78,42 +79,8 @@ def parse_arg():
 #        return env
 #    return thunk
 
-
-if __name__ == "__main__":
-    args = parse_arg()
-    args.batch_size = int(args.num_envs * args.num_steps)
-    args.minibatch_size = int(args.batch_size // args.num_minibatches)
-    print(args)
-
-    run_name = f"PPO_{args.env_id}_{args.exp_name}"
-
-    writer = SummaryWriter(f"logs/{run_name}")
-
-    writer.add_text(
-        "hyperparameters",
-        "|param|value|\n|-|-|\n%s" % ("\n".join([f"|{key}|{value}|" for key, value in vars(args).items()])),
-    )
-
-    random.seed(args.seed)
-    np.random.seed(args.seed)
-    torch.manual_seed(args.seed)
-
-    envs = gym.make_vec(
-                    args.env_id,
-                    render_mode="rgb_array",
-                    num_envs=args.num_envs, vectorization_mode="sync",
-                    wrappers=(
-                        gym.wrappers.TimeAwareObservation,
-                        gym.wrappers.RecordEpisodeStatistics,
-                        )
-                )
-    
-    assert isinstance(envs.single_action_space, gym.spaces.Discrete), "only discrete action space is supported"
-    observation = envs.reset()
-
-    agent = Agent(envs)
-
-    print(agent)
+def train_ppo(envs, eval_env, policy):
+    score = float("-inf")
 
     optimizer = torch.optim.Adam(agent.parameters(), lr=args.learning_rate, eps=1e-5)
 
@@ -134,7 +101,6 @@ if __name__ == "__main__":
     print("Number of rollouts:", num_updates)
 
     for update in range(1, num_updates + 1):
-
         if args.anneal_lr:
             frac = 1.0 - (update - 1.0) / num_updates
             lrnow = frac * args.learning_rate
@@ -157,7 +123,7 @@ if __name__ == "__main__":
 
             for item in info:
                 if item == "episode":
-                    print(f"global_step={global_step}, episodic_return={info['episode']['r']}")
+                    # print(f"global_step={global_step}, episodic_return={info['episode']['r']}")
                     writer.add_scalar("charts/episodic_return", info["episode"]["r"].max(), global_step)
                     writer.add_scalar("charts/episodic_length", info["episode"]["l"].max(), global_step)
                     break
@@ -257,7 +223,20 @@ if __name__ == "__main__":
         var_y = np.var(y_true)
         explained_var = np.nan if var_y == 0 else 1 - np.var(y_true - y_pred) / var_y
 
+        # Evaluate:
+        mean_reward, std_reward = evaluate_agent(eval_env, 10, policy)
+        tmp_score = mean_reward - std_reward
+
+        if tmp_score > score:
+            score = tmp_score
+            torch.save(agent.state_dict(), 'model_weights.pth')
+
+            print("New best score:", score, " saving model.")
+
         # TRY NOT TO MODIFY: record rewards for plotting purposes
+        writer.add_scalar("eval/score", tmp_score, global_step)
+        writer.add_scalar("eval/mean_reward", tmp_score, global_step)
+
         writer.add_scalar("charts/learning_rate", optimizer.param_groups[0]["lr"], global_step)
         writer.add_scalar("losses/value_loss", v_loss.item(), global_step)
         writer.add_scalar("losses/policy_loss", pg_loss.item(), global_step)
@@ -267,3 +246,41 @@ if __name__ == "__main__":
         writer.add_scalar("losses/explained_variance", explained_var, global_step)
     
     envs.close()
+
+
+if __name__ == "__main__":
+    args = parse_arg()
+    args.batch_size = int(args.num_envs * args.num_steps)
+    args.minibatch_size = int(args.batch_size // args.num_minibatches)
+
+    run_name = f"PPO_{args.env_id}_{args.exp_name}"
+
+    writer = SummaryWriter(f"logs/{run_name}")
+
+    writer.add_text(
+        "hyperparameters",
+        "|param|value|\n|-|-|\n%s" % ("\n".join([f"|{key}|{value}|" for key, value in vars(args).items()])),
+    )
+
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+
+    envs = gym.make_vec(
+                    args.env_id,
+                    num_envs=args.num_envs, vectorization_mode="sync",
+                    wrappers=(
+                        gym.wrappers.RecordEpisodeStatistics,
+                        )
+                )
+
+    # record env
+    eval_env = gym.make(args.env_id, render_mode="rgb_array")
+    
+    assert isinstance(envs.single_action_space, gym.spaces.Discrete), "only discrete action space is supported"
+
+    agent = Agent(envs)
+
+    train_ppo(envs, eval_env, agent)
+
+    record_video(eval_env, policy=agent, out_directory="videos/result.gif")
