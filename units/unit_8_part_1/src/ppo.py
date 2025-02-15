@@ -13,7 +13,6 @@ class Agent(nn.Module):
     def __init__(self, envs):
         super(Agent, self).__init__()
         
-        print(envs.single_observation_space.shape)
         self.critic = nn.Sequential(
             layer_init(nn.Linear(torch.tensor(envs.single_observation_space.shape).prod(), 24)),
             nn.Tanh(),
