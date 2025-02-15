@@ -188,3 +188,6 @@ ml-agents/
 
 # Exclude ml agents results
 results/
+
+# Exlude generated dir from sample factory
+train_dir/
