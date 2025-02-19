@@ -28,6 +28,8 @@ Basically, I'm going to learn how to build intelligent agents that can learn to 
 
 ## Table of Contents
 
+### Units
+
 1. [Train your first Deep Reinforcement Learning Agent](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_1)
 1. [Introduction to Q-Learning](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_2)
 1. [Deep Q-Learning with Atari Games](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_3)
@@ -35,8 +37,15 @@ Basically, I'm going to learn how to build intelligent agents that can learn to 
 1. [An Introduction to Unity ML-Agents](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_5)
 1. [Actor Critic Methods with Robotics Environments](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_6)
 1. [Introduction to Multi-Agents and AI vs AI](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_7)
-1. [Proximal Policy Optimisation (PPO)](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_8)
+1. [Proximal Policy Optimisation (PPO) Part I](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_8_part_1)
+1. [Proximal Policy Optimisation (PPO) Part II](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/unit_8_part_2)
 
+### Bonus
+
+1. [Introduction to Deep Reinforcement Learning with Huggy](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/bonus/unit_1)
+1. [Automatic Hyperparameter Tuning with Optuna](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/bonus/unit_2)
+1. [Advanced Topics In Reinforcement Learning](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/bonus/unit_3)
+1. [Imitation Learning With Godot RL Agents](https://github.com/Lucien-MG/deep-rl-hugging-face/tree/main/units/bonus/unit_5)
 
 ## More Ressources
 
