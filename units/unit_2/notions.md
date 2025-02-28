@@ -1,6 +1,6 @@
 # Introduction to Q-Learning
 
-In this unit, we’re going to dive deeper into one of the Reinforcement Learning methods:  
+In this unit, we are going to dive deeper into one of the Reinforcement Learning methods:  
 value-based methods and study our first RL algorithm: **Q-Learning**.
 
 In this unit:
