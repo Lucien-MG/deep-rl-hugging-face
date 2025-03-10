@@ -78,14 +78,14 @@ def package(
 
     # Clone or create the repo
     repo_url = HfApi().create_repo(
-        repo_id="Lpremier/my-ppo-LunarLander-v2",
+        repo_id="/my-ppo-LunarLander-v2",
         token=token,
         private=False,
         exist_ok=True,
     )
 
     repo_url = upload_folder(
-        repo_id="Lpremier/my-ppo-LunarLander-v2",
+        repo_id="/my-ppo-LunarLander-v2",
         folder_path=repos_dir,
         path_in_repo="",
         commit_message="Push agent to the Hub",
