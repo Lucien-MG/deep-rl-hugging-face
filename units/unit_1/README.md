@@ -27,6 +27,7 @@ You can run the training of the ppo with this command:
 ```bash
 python src/train.py -e "LunarLander-v3"
 ```
+
 Edit the src/train.py file to try different parameters. 
 
 ### Evaluate performance
@@ -58,8 +59,16 @@ python src/hugface.py -e "LunarLander-v3" -u hugging_face_username -t your_token
 
 ## Dependencies
 
+Install these in your venv:
+
 ```bash
 pip install torch gymnasium[box2d] gymnasium[other] stable_baselines3 tensorboard huggingface-hub huggingface-sb3
+```
+
+for a cpu installation of pytorch:
+
+```bash
+pip install torch --index-url https://download.pytorch.org/whl/cpu
 ```
 
 ## Tensorboard:
@@ -68,4 +77,10 @@ To monitor trainning progress:
 
 ```bash
 tensorboard --logdir ./logs
+```
+
+To expose tensorboard use:
+
+```bash
+tensorboard --logdir ./logs --host 0.0.0.0
 ```
