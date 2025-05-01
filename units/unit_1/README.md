@@ -4,9 +4,9 @@
 
 Scripts:
 * **hugface.py:** Pushes the trained model to the Hugging Face Hub.
-* **test_model.py:** Evaluates the trained agent and logs the performance.
+* **test.py:** Evaluates the trained agent and logs the performance.
 * **train.py:** Trains a PPO agent on the Lunar Lander environment.
-* **watch_model.py:** Visualizes the trained agent interacting with the environment.
+* **watch.py:** Visualizes the trained agent interacting with the environment.
 
 These folders will be created at training time,
 * **logs:** which will contain tensorbord training logs
