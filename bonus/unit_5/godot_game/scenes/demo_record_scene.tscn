@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cw4ucniifcy7x"]
+
+[ext_resource type="Script" uid="uid://8dmopoi60pel" path="res://addons/godot_rl_agents/sync.gd" id="1_0yxn3"]
+[ext_resource type="PackedScene" uid="uid://b2duvi8qycevc" path="res://scenes/level.tscn" id="2_3o72j"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rsgtu"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_dlj62"]
+sky_material = SubResource("ProceduralSkyMaterial_rsgtu")
+
+[sub_resource type="Environment" id="Environment_ylxee"]
+background_mode = 2
+sky = SubResource("Sky_dlj62")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_lxwv8"]
+device = -1
+keycode = 82
+unicode = 114
+
+[sub_resource type="Environment" id="Environment_qc3pl"]
+
+[node name="DemoRecordScene" type="Node3D"]
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource("1_0yxn3")
+action_repeat = 3
+speed_up = 0.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ylxee")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Level" parent="." instance=ExtResource("2_3o72j")]
+
+[node name="AIController3D" parent="Level/Robot" index="3"]
+control_mode = 4
+expert_demo_save_path = "expert_demos.json"
+remove_last_episode_key = SubResource("InputEventKey_lxwv8")
+action_repeat = 3
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.428935, 0.903335, 0, -0.903335, 0.428935, 49.25, 27.665, 7.791)
+environment = SubResource("Environment_qc3pl")
+fov = 53.5
+size = 24.756
+
+[editable path="Level"]
+[editable path="Level/Robot"]
+[editable path="Level/Robot/robot"]

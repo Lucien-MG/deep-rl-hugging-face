@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://dolcautfr1eto"]
+
+[ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="1_evwyw"]
+[ext_resource type="PackedScene" uid="uid://b2duvi8qycevc" path="res://scenes/level.tscn" id="2_ruosc"]
+
+[sub_resource type="Environment" id="Environment_qc3pl"]
+
+[node name="TrainingScene" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+
+[node name="Level" parent="." instance=ExtResource("2_ruosc")]
+
+[node name="Level2" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+
+[node name="Level3" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
+
+[node name="Level4" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
+
+[node name="Level5" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 0)
+
+[node name="Level6" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
+
+[node name="Level7" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, 0)
+
+[node name="Level8" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140, 0, 0)
+
+[node name="Level9" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 0)
+
+[node name="Level10" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180, 0, 0)
+
+[node name="Level11" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 0)
+
+[node name="Level12" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 220, 0, 0)
+
+[node name="Level13" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240, 0, 0)
+
+[node name="Level14" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 260, 0, 0)
+
+[node name="Level15" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 280, 0, 0)
+
+[node name="Level16" parent="." instance=ExtResource("2_ruosc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.63473, 0.772733, 0, -0.772733, 0.63473, 57.99, 9.09, 4.821)
+environment = SubResource("Environment_qc3pl")
+current = true
+fov = 51.3
+size = 24.756
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource("1_evwyw")
+action_repeat = 3
+speed_up = 16.0

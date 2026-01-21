@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvvkkstybm1eo"]
+
+[ext_resource type="Script" path="res://scripts/rising_stairs.gd" id="1_1n52n"]
+[ext_resource type="PackedScene" uid="uid://d25ikeq2hqkch" path="res://assets/stairs.glb" id="1_p13u0"]
+[ext_resource type="PackedScene" uid="uid://dogdqgqh53qlb" path="res://scenes/modules/stone_floor.tscn" id="2_driqe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cry36"]
+size = Vector3(1, 0.204041, 1.32077)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vpwia"]
+size = Vector3(1, 0.204041, 0.106415)
+
+[node name="LeverActivatedStairs" type="AnimatableBody3D" groups=["resetable"]]
+sync_to_physics = false
+script = ExtResource("1_1n52n")
+
+[node name="stairs2" parent="." instance=ExtResource("1_p13u0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.637007, -0.770858, 0, 0.770858, 0.637007, 0, 0.418988, -0.371902)
+shape = SubResource("BoxShape3D_cry36")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0870515, -0.996204, 0, 0.996204, -0.0870515, 0, 0.939538, -0.815798)
+shape = SubResource("BoxShape3D_vpwia")
+
+[node name="StoneFloor" parent="." instance=ExtResource("2_driqe")]

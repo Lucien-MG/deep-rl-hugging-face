@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2sk86fpnbjl6"]
+
+[ext_resource type="Script" path="res://scripts/raft.gd" id="1_jchjo"]
+[ext_resource type="PackedScene" uid="uid://cobna7ykikkdd" path="res://assets/raft.glb" id="2_ip762"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uofgp"]
+size = Vector3(1.345, 0.196942, 1.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ptbl"]
+size = Vector3(1.92, 0.197, 1.2)
+
+[node name="Raft" type="AnimatableBody3D" groups=["resetable"]]
+sync_to_physics = false
+script = ExtResource("1_jchjo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0115142, 0)
+shape = SubResource("BoxShape3D_uofgp")
+
+[node name="raft" parent="." instance=ExtResource("2_ip762")]
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0115142, 0)
+shape = SubResource("BoxShape3D_6ptbl")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

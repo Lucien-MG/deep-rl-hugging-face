@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://6nkm1wqksnpr"]
+
+[ext_resource type="PackedScene" uid="uid://gd0rvajc8d1m" path="res://assets/wood_spikes.glb" id="1_7v0m4"]
+[ext_resource type="Script" path="res://scripts/player_reseting_obstacle.gd" id="1_pbh54"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33rli"]
+size = Vector3(2, 0.524, 2)
+
+[node name="WoodSpikes" type="Area3D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_pbh54")
+
+[node name="wood_spikes" parent="." instance=ExtResource("1_7v0m4")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.238159, 0)
+shape = SubResource("BoxShape3D_33rli")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

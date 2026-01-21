@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://81yp7r70o1ys"]
+
+[ext_resource type="Script" path="res://scripts/lever.gd" id="1_1prj6"]
+[ext_resource type="PackedScene" uid="uid://46ukh7d0n6bs" path="res://assets/lever.glb" id="1_jqeqd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_et67a"]
+radius = 1.065
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8bcuu"]
+size = Vector3(0.701233, 0.593597, 0.61)
+
+[node name="Lever" type="Area3D" groups=["resetable"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_1prj6")
+handle_rotation_speed = 5.0
+
+[node name="lever" parent="." instance=ExtResource("1_jqeqd")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455187, 0)
+shape = SubResource("SphereShape3D_et67a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00088501, 0.196749, 0)
+shape = SubResource("BoxShape3D_8bcuu")
+
+[editable path="lever"]

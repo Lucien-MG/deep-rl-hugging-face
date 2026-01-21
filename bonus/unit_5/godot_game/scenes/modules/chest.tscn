@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://b1a330fk83uh3"]
+
+[ext_resource type="PackedScene" uid="uid://c6xflc321tq4p" path="res://assets/chest_open.glb" id="1_a3dw3"]
+[ext_resource type="Script" path="res://scripts/chest.gd" id="1_jgai7"]
+[ext_resource type="PackedScene" uid="uid://2pf0ivr2xnhb" path="res://assets/chest_closed.glb" id="2_4huhf"]
+[ext_resource type="Texture2D" uid="uid://73uje1x07qjt" path="res://assets/star.png" id="4_ubtpg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1qhwh"]
+size = Vector3(0.735, 0.59, 0.605)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eifnv"]
+radius = 1.18
+
+[sub_resource type="Gradient" id="Gradient_2h4q0"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gkr10"]
+gradient = SubResource("Gradient_2h4q0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kuf4u"]
+emission_shape = 3
+emission_box_extents = Vector3(0.7, 1, 0.6)
+angle_min = -90.0
+angle_max = 90.0
+direction = Vector3(0, 1, 0)
+spread = 45.015
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+color_ramp = SubResource("GradientTexture1D_gkr10")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rbly5"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_ubtpg")
+texture_repeat = false
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_e4d88"]
+material = SubResource("StandardMaterial3D_rbly5")
+size = Vector2(0.1, 0.1)
+
+[node name="Chest" type="Area3D" groups=["resetable"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_jgai7")
+
+[node name="chest_open" parent="." instance=ExtResource("1_a3dw3")]
+visible = false
+
+[node name="chest_closed" parent="." instance=ExtResource("2_4huhf")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_1qhwh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455187, 0)
+shape = SubResource("SphereShape3D_eifnv")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.973103, 0)
+emitting = false
+amount = 64
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_kuf4u")
+draw_pass_1 = SubResource("QuadMesh_e4d88")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

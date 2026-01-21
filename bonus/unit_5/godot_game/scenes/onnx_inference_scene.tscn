@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://t2phyfvahqnp"]
+
+[ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="1_gbv6m"]
+[ext_resource type="PackedScene" uid="uid://b2duvi8qycevc" path="res://scenes/level.tscn" id="2_veent"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rsgtu"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_dlj62"]
+sky_material = SubResource("ProceduralSkyMaterial_rsgtu")
+
+[sub_resource type="Environment" id="Environment_ylxee"]
+background_mode = 2
+sky = SubResource("Sky_dlj62")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="OnnxInferenceScene" type="Node3D"]
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource("1_gbv6m")
+control_mode = 2
+action_repeat = 3
+onnx_model_path = "model.onnx"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ylxee")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Level" parent="." instance=ExtResource("2_veent")]

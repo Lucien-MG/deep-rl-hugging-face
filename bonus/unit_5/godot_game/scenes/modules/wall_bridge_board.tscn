@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://svndairma008"]
+
+[ext_resource type="PackedScene" uid="uid://oqv1c46unwxx" path="res://assets/wall_bridge_board.glb" id="1_m6s05"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_povfk"]
+size = Vector3(5.5, 0.14, 0.69)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yp4jt"]
+size = Vector3(0.319, 0.561, 1.035)
+
+[node name="WallBridgeBoard" type="Node3D"]
+
+[node name="wall_bridge_board" parent="." instance=ExtResource("1_m6s05")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0327919, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_povfk")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85488, -0.012251, 0)
+shape = SubResource("BoxShape3D_yp4jt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.84512, -0.012251, 0)
+shape = SubResource("BoxShape3D_yp4jt")

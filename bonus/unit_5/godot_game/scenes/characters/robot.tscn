@@ -1,0 +1,1182 @@
+[gd_scene load_steps=11 format=3 uid="uid://dj6uaupgnjtgm"]
+
+[ext_resource type="PackedScene" uid="uid://bb2je1c8jc1qr" path="res://assets/robot.glb" id="1_n7jto"]
+[ext_resource type="Script" path="res://scripts/robot.gd" id="1_vywkg"]
+[ext_resource type="Script" path="res://scripts/camera_x_rotation.gd" id="3_aahdi"]
+[ext_resource type="Script" path="res://addons/godot_rl_agents/sensors/sensors_3d/RaycastSensor3D.gd" id="4_iofki"]
+[ext_resource type="Script" path="res://scripts/robot_ai_controller.gd" id="5_sx7mj"]
+
+[sub_resource type="Animation" id="Animation_2kfmf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Robot/Arm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Robot/Arm_001:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Robot/Torso:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Robot/Head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Robot/Head:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ly00x"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Robot/Arm:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.349066, 0, 0.0610865)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Robot/Arm_001:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.349066, 0, -0.148353)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Robot/Head:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.162316, 0.0488692), Vector3(0, 0, 0), Vector3(0.139626, -0.178024, 0.0226893)]
+}
+
+[sub_resource type="Animation" id="Animation_6jb0l"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Robot/Arm:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.174533, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Robot/Arm_001:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.174533, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Robot/Torso:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.01, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Robot/Head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.02, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Robot/Head:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0349066, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g7kmm"]
+_data = {
+"RESET": SubResource("Animation_2kfmf"),
+"idle": SubResource("Animation_ly00x"),
+"walking": SubResource("Animation_6jb0l")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7xgfq"]
+radius = 0.195862
+height = 0.655
+
+[node name="Robot" type="CharacterBody3D" node_paths=PackedStringArray("camera_x_rotation", "animation_player", "robot_visual") groups=["resetable"]]
+collision_layer = 2
+collision_mask = 3
+floor_stop_on_slope = false
+floor_max_angle = 0.872665
+script = ExtResource("1_vywkg")
+camera_x_rotation = NodePath("CameraXRotation")
+animation_player = NodePath("robot/AnimationPlayer")
+robot_visual = NodePath("robot")
+movement_speed = 200.0
+jump_velocity = 3.25
+
+[node name="robot" parent="." instance=ExtResource("1_n7jto")]
+
+[node name="Robot" parent="robot" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Arm_001" parent="robot/Robot" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00394951, 0, -0.18)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="robot"]
+libraries = {
+"": SubResource("AnimationLibrary_g7kmm")
+}
+autoplay = "idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.177229, 0)
+shape = SubResource("CapsuleShape3D_7xgfq")
+
+[node name="CameraXRotation" type="Node3D" parent="."]
+script = ExtResource("3_aahdi")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraXRotation"]
+transform = Transform3D(1, 0, 0, 0, 0.953717, 0.300706, 0, -0.300706, 0.953717, 0, 0.445, 0.49)
+
+[node name="Camera3D" type="Camera3D" parent="CameraXRotation/SpringArm3D"]
+size = 4.2
+
+[node name="AIController3D" type="Node3D" parent="." node_paths=PackedStringArray("raycast_sensors")]
+script = ExtResource("5_sx7mj")
+raycast_sensors = [NodePath("../RaycastSensors/ForwardSensor"), NodePath("../RaycastSensors/FloorSensor")]
+reset_after = 3000
+
+[node name="RaycastSensors" type="Node3D" parent="."]
+visible = false
+
+[node name="ForwardSensor" type="Node3D" parent="RaycastSensors"]
+transform = Transform3D(1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107, 0, 1.5794, 0)
+script = ExtResource("4_iofki")
+collision_mask = 5
+n_rays_width = 13.0
+n_rays_height = 13.0
+ray_length = 5.0
+cone_width = 180.0
+cone_height = 90.0
+collide_with_areas = true
+
+[node name="@RayCast3D@24901" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.71527, -3.31561, 0.451115)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24902" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.08492, -2.84032, 0.495999)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24903" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.395, -2.32362, 0.53365)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24904" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.64099, -1.77302, 0.563519)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24905" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.81931, -1.19658, 0.585171)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24906" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.92735, -0.602683, 0.598289)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24907" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.96354, 0, 0.602683)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24908" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.92735, 0.602683, 0.598289)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24909" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.81931, 1.19658, 0.585171)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24910" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.64099, 1.77302, 0.563519)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24911" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.395, 2.32362, 0.53365)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24912" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.08492, 2.84032, 0.495999)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24913" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.71527, 3.31561, 0.451115)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24914" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.49935, -3.31561, 1.32713)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24915" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.84752, -2.84032, 1.45917)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24916" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.13958, -2.32362, 1.56994)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24917" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.37128, -1.77302, 1.65781)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24918" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.53923, -1.19658, 1.7215)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24919" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.64099, -0.602683, 1.7601)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24920" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.67508, 0, 1.77302)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24921" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.64099, 0.602683, 1.7601)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24922" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.53923, 1.19658, 1.7215)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24923" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.37128, 1.77302, 1.65781)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24924" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.13958, 2.32362, 1.56994)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24925" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.84752, 2.84032, 1.45917)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24926" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.49935, 3.31561, 1.32713)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24927" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.08006, -3.31561, 2.12601)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24928" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.38651, -2.84032, 2.33754)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24929" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.64358, -2.32362, 2.51498)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24930" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.84752, -1.77302, 2.65575)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24931" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.99535, -1.19658, 2.75779)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24932" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.08492, -0.602683, 2.81961)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24933" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.11492, 0, 2.84032)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24934" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-4.08492, 0.602683, 2.81961)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24935" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.99535, 1.19658, 2.75779)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24936" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.84752, 1.77302, 2.65575)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24937" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.64358, 2.32362, 2.51498)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24938" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.38651, 2.84032, 2.33754)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24939" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.08006, 3.31561, 2.12601)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24940" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.48177, -3.31561, 2.80134)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24941" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.7287, -2.84032, 3.08006)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24942" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.93583, -2.32362, 3.31387)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24943" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.10015, -1.77302, 3.49935)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24944" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.21927, -1.19658, 3.6338)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24945" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.29144, -0.602683, 3.71527)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24946" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.31561, 0, 3.74255)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24947" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.29144, 0.602683, 3.71527)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24948" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.21927, 1.19658, 3.6338)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24949" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-3.10015, 1.77302, 3.49935)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24950" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.93583, 2.32362, 3.31387)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24951" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.7287, 2.84032, 3.08006)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24952" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.48177, 3.31561, 2.80134)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_4 0" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.73925, -3.31561, 3.31387)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_4 1" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.9123, -2.84032, 3.64358)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_4 2" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.05746, -2.32362, 3.92016)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_4 3" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.17262, -1.77302, 4.13958)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24953" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.2561, -1.19658, 4.29863)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24954" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.30667, -0.602683, 4.395)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24955" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.32362, 0, 4.42728)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24956" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.30667, 0.602683, 4.395)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24957" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.2561, 1.19658, 4.29863)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24958" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.17262, 1.77302, 4.13958)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24959" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-2.05746, 2.32362, 3.92016)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24960" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.9123, 2.84032, 3.64358)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24961" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.73925, 3.31561, 3.31387)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_5 0" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-0.895652, -3.31561, 3.6338)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_5 1" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-0.984765, -2.84032, 3.99535)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_5 2" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.05952, -2.32362, 4.29863)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_5 3" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.11882, -1.77302, 4.53923)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24962" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.16181, -1.19658, 4.71364)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24963" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.18785, -0.602683, 4.81931)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24964" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.19658, 0, 4.85471)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24965" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.18785, 0.602683, 4.81931)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24966" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.16181, 1.19658, 4.71364)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24967" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.11882, 1.77302, 4.53923)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24968" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-1.05952, 2.32362, 4.29863)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24969" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-0.984765, 2.84032, 3.99535)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24970" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(-0.895652, 3.31561, 3.6338)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_6 0" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, -3.31561, 3.74255)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_6 1" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, -2.84032, 4.11492)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_6 2" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, -2.32362, 4.42728)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_6 3" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, -1.77302, 4.67508)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24971" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, -1.19658, 4.85471)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24972" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, -0.602683, 4.96354)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24973" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, 0, 5)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24974" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, 0.602683, 4.96354)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24975" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, 1.19658, 4.85471)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24976" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, 1.77302, 4.67508)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24977" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, 2.32362, 4.42728)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24978" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, 2.84032, 4.11492)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24979" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0, 3.31561, 3.74255)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_7 0" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0.895652, -3.31561, 3.6338)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_7 1" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0.984765, -2.84032, 3.99535)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_7 2" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.05952, -2.32362, 4.29863)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_7 3" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.11882, -1.77302, 4.53923)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24980" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.16181, -1.19658, 4.71364)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24981" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.18785, -0.602683, 4.81931)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24982" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.19658, 0, 4.85471)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24983" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.18785, 0.602683, 4.81931)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24984" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.16181, 1.19658, 4.71364)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24985" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.11882, 1.77302, 4.53923)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24986" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.05952, 2.32362, 4.29863)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24987" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0.984765, 2.84032, 3.99535)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24988" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(0.895652, 3.31561, 3.6338)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_8 0" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.73925, -3.31561, 3.31387)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_8 1" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.9123, -2.84032, 3.64358)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_8 2" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.05746, -2.32362, 3.92016)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_8 3" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.17262, -1.77302, 4.13958)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_8 4" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.2561, -1.19658, 4.29863)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_8 5" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.30667, -0.602683, 4.395)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_8 6" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.32362, 0, 4.42728)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_8 7" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.30667, 0.602683, 4.395)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24989" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.2561, 1.19658, 4.29863)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24990" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.17262, 1.77302, 4.13958)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24991" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.05746, 2.32362, 3.92016)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24992" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.9123, 2.84032, 3.64358)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24993" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(1.73925, 3.31561, 3.31387)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_9 0" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.48177, -3.31561, 2.80134)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_9 1" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.7287, -2.84032, 3.08006)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_9 2" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.93583, -2.32362, 3.31387)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_9 3" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.10015, -1.77302, 3.49935)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_9 4" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.21927, -1.19658, 3.6338)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_9 5" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.29144, -0.602683, 3.71527)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_9 6" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.31561, 0, 3.74255)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_9 7" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.29144, 0.602683, 3.71527)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24994" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.21927, 1.19658, 3.6338)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24995" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.10015, 1.77302, 3.49935)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24996" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.93583, 2.32362, 3.31387)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24997" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.7287, 2.84032, 3.08006)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24998" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(2.48177, 3.31561, 2.80134)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_10 0" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.08006, -3.31561, 2.12601)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_10 1" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.38651, -2.84032, 2.33754)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_10 2" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.64358, -2.32362, 2.51498)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_10 3" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.84752, -1.77302, 2.65575)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_10 4" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.99535, -1.19658, 2.75779)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_10 5" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.08492, -0.602683, 2.81961)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_10 6" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.11492, 0, 2.84032)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_10 7" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.08492, 0.602683, 2.81961)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24999" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.99535, 1.19658, 2.75779)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@25000" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.84752, 1.77302, 2.65575)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@25001" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.64358, 2.32362, 2.51498)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@25002" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.38651, 2.84032, 2.33754)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@25003" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.08006, 3.31561, 2.12601)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_11 0" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.49935, -3.31561, 1.32713)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_11 1" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.84752, -2.84032, 1.45917)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_11 2" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.13958, -2.32362, 1.56994)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_11 3" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.37128, -1.77302, 1.65781)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_11 4" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.53923, -1.19658, 1.7215)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_11 5" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.64099, -0.602683, 1.7601)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_11 6" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.67508, 0, 1.77302)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_11 7" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.64099, 0.602683, 1.7601)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@25004" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.53923, 1.19658, 1.7215)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@25005" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.37128, 1.77302, 1.65781)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@25006" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.13958, 2.32362, 1.56994)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@25007" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.84752, 2.84032, 1.45917)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@25008" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.49935, 3.31561, 1.32713)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_12 0" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.71527, -3.31561, 0.451115)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_12 1" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.08492, -2.84032, 0.495999)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_12 2" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.395, -2.32362, 0.53365)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_12 3" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.64099, -1.77302, 0.563519)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_12 4" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.81931, -1.19658, 0.585171)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_12 5" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.92735, -0.602683, 0.598289)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_12 6" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.96354, 0, 0.602683)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_12 7" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.92735, 0.602683, 0.598289)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_12 8" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.81931, 1.19658, 0.585171)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_12 9" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.64099, 1.77302, 0.563519)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_12 10" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.395, 2.32362, 0.53365)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_12 11" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(4.08492, 2.84032, 0.495999)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@25009" type="RayCast3D" parent="RaycastSensors/ForwardSensor"]
+target_position = Vector3(3.71527, 3.31561, 0.451115)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="FloorSensor" type="Node3D" parent="RaycastSensors"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("4_iofki")
+collision_mask = 5
+n_rays_width = 4.0
+n_rays_height = 4.0
+ray_length = 1.0
+cone_width = 80.0
+cone_height = 80.0
+collide_with_areas = true
+
+[node name="@RayCast3D@24609" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(-0.433013, -0.5, 0.75)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24610" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(-0.492404, -0.173648, 0.852869)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24611" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(-0.492404, 0.173648, 0.852869)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_0 3" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(-0.433013, 0.5, 0.75)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24612" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(-0.150384, -0.5, 0.852869)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24613" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(-0.17101, -0.173648, 0.969846)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24614" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(-0.17101, 0.173648, 0.969846)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_1 3" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(-0.150384, 0.5, 0.852869)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_2 0" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(0.150384, -0.5, 0.852869)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_2 1" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(0.17101, -0.173648, 0.969846)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24615" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(0.17101, 0.173648, 0.969846)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_2 3" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(0.150384, 0.5, 0.852869)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24616" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(0.433013, -0.5, 0.75)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24617" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(0.492404, -0.173648, 0.852869)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="@RayCast3D@24618" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(0.492404, 0.173648, 0.852869)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="node_3 3" type="RayCast3D" parent="RaycastSensors/FloorSensor"]
+target_position = Vector3(0.433013, 0.5, 0.75)
+collision_mask = 5
+collide_with_areas = true
+
+[editable path="robot"]

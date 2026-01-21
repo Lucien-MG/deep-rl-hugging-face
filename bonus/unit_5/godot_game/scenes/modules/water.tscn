@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckxs5gl0peai3"]
+
+[ext_resource type="PackedScene" uid="uid://dl85ql3mgcotc" path="res://assets/water.glb" id="1_bsoxf"]
+[ext_resource type="Script" path="res://scripts/player_reseting_obstacle.gd" id="1_ffjvk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tf14t"]
+size = Vector3(2, 1, 2)
+
+[node name="Water" type="Area3D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_ffjvk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_tf14t")
+
+[node name="water" parent="." instance=ExtResource("1_bsoxf")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
